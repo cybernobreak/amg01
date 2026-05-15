@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMG Peptídeos | GHK-Cu Premium</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amg: {
+                            black: '#030303',
+                            dark: '#0a0f0d',
+                            green: '#121f1a',
+                            gold: '#C4A45C',
+                            goldhover: '#D4B572',
+                            lime: '#7ebd22',
+                            blue: '#1e3a8a'
+                        }
+                    },
+                    fontFamily: {
+                        sora: ['Sora', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis & GSAP -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #030303;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Mouse Glow Effect */
+        #cursor-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(196, 164, 92, 0.08) 0%, rgba(0,0,0,0) 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            transition: left 0.1s ease-out, top 0.1s ease-out;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(18, 31, 26, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(196, 164, 92, 0.1);
+        }
+        
+        .glass-card {
+            background: linear-gradient(145deg, rgba(18, 31, 26, 0.6) 0%, rgba(10, 15, 13, 0.8) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(196, 164, 92, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(196, 164, 92, 0.4);
+            box-shadow: inset 0 0 30px rgba(196, 164, 92, 0.05), 0 10px 40px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
+        }
+
+        /* Typography */
+        .text-gold-gradient {
+            background: linear-gradient(to right, #C4A45C, #E8D08D, #C4A45C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Image Placeholders with Glow */
+        .vial-placeholder {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 2/3;
+            border-radius: 20px;
+            background: linear-gradient(to bottom, #121f1a, #0a0f0d);
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px rgba(30, 58, 138, 0.15), inset 0 0 20px rgba(126, 189, 34, 0.05);
+            overflow: hidden;
+        }
+        .vial-placeholder::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(to top, rgba(30, 58, 138, 0.4), transparent);
+            filter: blur(20px);
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030303; }
+        ::-webkit-scrollbar-thumb { background: #121f1a; border-radius: 4px; border: 1px solid rgba(196, 164, 92, 0.2); }
+        ::-webkit-scrollbar-thumb:hover { background: #C4A45C; }
+    </style>
+</head>
+<body class="font-inter antialiased selection:bg-amg-gold selection:text-black relative">
+
+    <div class="noise-overlay"></div>
+    <div id="cursor-glow" class="hidden lg:block"></div>
+
+    <!-- Sidebar Desktop -->
+    <nav class="hidden md:flex fixed left-0 top-0 h-screen w-24 glass flex-col items-center justify-between py-10 z-40 transition-all hover:w-64 group border-r border-amg-gold/10 hover:border-amg-gold/30">
+        <div class="flex flex-col items-center w-full gap-8">
+            <div class="w-12 h-12 rounded-full border border-amg-gold/30 flex items-center justify-center text-amg-gold font-sora font-bold text-xl group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(196,164,92,0.2)]">
+                A
+            </div>
+            <div class="w-full px-6 flex flex-col gap-6 mt-10">
+                <a href="#hero" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4">
+                    <i data-lucide="home" class="w-6 h-6 shrink-0"></i>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-sm tracking-widest uppercase">Início</span>
+                </a>
+                <a href="#showcase" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4">
+                    <i data-lucide="flask-conical" class="w-6 h-6 shrink-0"></i>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-sm tracking-widest uppercase">Produto</span>
+                </a>
+                <a href="#benefits" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4">
+                    <i data-lucide="activity" class="w-6 h-6 shrink-0"></i>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-sm tracking-widest uppercase">Benefícios</span>
+                </a>
+                <a href="#protocols" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4">
+                    <i data-lucide="layers" class="w-6 h-6 shrink-0"></i>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-sm tracking-widest uppercase">Protocolos</span>
+                </a>
+            </div>
+        </div>
+        <a href="#lab" class="flex items-center text-gray-500 hover:text-white transition-colors gap-4 px-6 w-full">
+            <i data-lucide="file-check-2" class="w-6 h-6 shrink-0"></i>
+            <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-sm tracking-widest uppercase">Laudos Técnicos</span>
+        </a>
+    </nav>
+
+    <!-- Dock Mobile -->
+    <nav class="md:hidden fixed bottom-6 left-4 right-4 h-16 glass rounded-2xl z-40 flex items-center justify-around px-2 shadow-2xl">
+        <a href="#hero" class="p-2 text-gray-400 hover:text-amg-gold"><i data-lucide="home" class="w-5 h-5"></i></a>
+        <a href="#showcase" class="p-2 text-gray-400 hover:text-amg-gold"><i data-lucide="flask-conical" class="w-5 h-5"></i></a>
+        <a href="#benefits" class="p-2 text-gray-400 hover:text-amg-gold"><i data-lucide="activity" class="w-5 h-5"></i></a>
+        <a href="#protocols" class="p-2 text-gray-400 hover:text-amg-gold"><i data-lucide="layers" class="w-5 h-5"></i></a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="md:ml-24 relative z-10">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative px-6 py-20 overflow-hidden">
+            <!-- Background Orbs -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amg-green rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between w-full gap-16 relative z-10">
+                <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <p class="text-amg-gold font-sora tracking-[0.3em] text-sm uppercase mb-6 hero-anim">Laboratório de Luxo</p>
+                    <h1 class="text-6xl md:text-8xl font-sora font-light text-white mb-4 hero-anim tracking-tight">
+                        AMG <br/>
+                        <span class="text-gold-gradient font-medium">PEPTÍDEOS</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-400 font-light mb-10 hero-anim max-w-lg">
+                        GHK-Cu | <span class="text-gray-300">Copper Tripeptide-1</span>
+                    </p>
+                    
+                    <a href="#showcase" class="hero-anim inline-flex items-center justify-center gap-3 px-8 py-4 glass rounded-full text-amg-gold border border-amg-gold/30 hover:border-amg-gold hover:shadow-[0_0_20px_rgba(196,164,92,0.2)] transition-all group">
+                        <span class="font-sora tracking-widest uppercase text-sm">Explorar</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="flex-1 flex justify-center lg:justify-end hero-anim">
+                    <!-- Placeholder for the Floating Vial 3D Image -->
+                    <div class="vial-placeholder floating-element group">
+                        <div class="text-center p-8 z-10">
+                            <i data-lucide="flask-conical" class="w-16 h-16 mx-auto text-amg-gold/50 mb-4 group-hover:text-amg-gold transition-colors duration-500"></i>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest">Insira aqui a imagem<br/>do Vial 3D (Fundo Transparente)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showcase / Parallax Section -->
+        <section id="showcase" class="py-32 px-6 relative bg-amg-dark/50 border-y border-amg-gold/5">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20 scroll-reveal">
+                    <h2 class="text-4xl md:text-5xl font-sora font-light text-white mb-6">A Essência da <span class="text-gold-gradient">Regeneração</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">Desenvolvido com precisão biotecnológica. O Copper Tripeptide-1 atua no nível celular para reverter o envelhecimento e acelerar a recuperação.</p>
+                </div>
+
+                <div class="w-full aspect-video rounded-3xl overflow-hidden glass border border-amg-gold/10 relative flex items-center justify-center scroll-reveal group">
+                    <div class="absolute inset-0 bg-gradient-to-t from-amg-black via-transparent to-transparent z-10"></div>
+                    <!-- Placeholder for the Box + Vial photo -->
+                    <div class="z-20 text-center">
+                        <i data-lucide="image" class="w-12 h-12 text-amg-gold/40 mx-auto mb-4"></i>
+                        <p class="text-sm font-sora tracking-widest text-amg-gold/60 uppercase">Imagem Cinematográfica: Caixa + Vial</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20 scroll-reveal">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-sora font-light mb-4">Mecanismos de <span class="text-gold-gradient">Ação</span></h2>
+                    </div>
+                    <p class="text-gray-400 max-w-md text-sm md:text-right font-light tracking-wide uppercase">Potência silenciosa.<br/>Resultados evidentes.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="glass-card p-10 rounded-2xl scroll-reveal">
+                        <div class="w-12 h-12 rounded-full glass flex items-center justify-center border border-amg-gold/20 mb-8 text-amg-gold">
+                            <i data-lucide="dna" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-sora text-xl mb-4 text-white">Síntese de Colágeno</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed font-light">Estimula a produção natural de colágeno e elastina, restaurando a firmeza estrutural e densidade da pele de forma profunda.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="glass-card p-10 rounded-2xl scroll-reveal">
+                        <div class="w-12 h-12 rounded-full glass flex items-center justify-center border border-amg-gold/20 mb-8 text-amg-gold">
+                            <i data-lucide="activity" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-sora text-xl mb-4 text-white">Regeneração Tecidual</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed font-light">Acelera drasticamente a cicatrização e recuperação muscular pós-treino, modulando as vias de inflamação.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="glass-card p-10 rounded-2xl scroll-reveal">
+                        <div class="w-12 h-12 rounded-full glass flex items-center justify-center border border-amg-gold/20 mb-8 text-amg-gold">
+                            <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-sora text-xl mb-4 text-white">Redensificação Capilar</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed font-light">Aumenta o tamanho dos folículos capilares e prolonga a fase de crescimento (anágena) para fios mais espessos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use & Protocols -->
+        <section id="protocols" class="py-32 px-6 bg-amg-dark/30 border-y border-amg-gold/5 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-amg-blue rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+                
+                <!-- Timeline -->
+                <div class="scroll-reveal">
+                    <h2 class="text-3xl font-sora font-light mb-12">Ritual de <span class="text-gold-gradient">Utilização</span></h2>
+                    
+                    <div class="relative border-l border-amg-gold/20 ml-4 space-y-12 pb-8">
+                        <div class="relative pl-8">
+                            <div class="absolute w-3 h-3 bg-amg-gold rounded-full -left-[1.5px] top-1.5 shadow-[0_0_10px_#C4A45C]"></div>
+                            <h4 class="font-sora text-lg text-white mb-2">1. Preparação</h4>
+                            <p class="text-gray-400 text-sm font-light">Reconstituição estéril utilizando água bacteriostática. Mantenha o ambiente limpo.</p>
+                        </div>
+                        <div class="relative pl-8">
+                            <div class="absolute w-3 h-3 bg-amg-green border border-amg-gold rounded-full -left-[1.5px] top-1.5"></div>
+                            <h4 class="font-sora text-lg text-white mb-2">2. Dosagem</h4>
+                            <p class="text-gray-400 text-sm font-light">Ajuste microscópico da dosagem conforme o protocolo selecionado (estético ou recuperativo).</p>
+                        </div>
+                        <div class="relative pl-8">
+                            <div class="absolute w-3 h-3 bg-amg-green border border-amg-gold rounded-full -left-[1.5px] top-1.5"></div>
+                            <h4 class="font-sora text-lg text-white mb-2">3. Conservação</h4>
+                            <p class="text-gray-400 text-sm font-light">Armazenamento refrigerado obrigatório após a reconstituição (2°C a 8°C) para manter a estabilidade molecular.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Protocols Grid -->
+                <div class="scroll-reveal">
+                    <h2 class="text-3xl font-sora font-light mb-12">Protocolos <span class="text-gray-500">Direcionados</span></h2>
+                    
+                    <div class="space-y-4">
+                        <div class="glass p-6 rounded-xl border border-amg-gold/10 hover:border-amg-gold/40 transition-colors group cursor-pointer flex items-center justify-between">
+                            <div>
+                                <h4 class="font-sora text-white mb-1 group-hover:text-amg-gold transition-colors">Foco Estético & Anti-aging</h4>
+                                <p class="text-xs text-gray-500 font-light uppercase tracking-wider">Ciclo de 30 dias</p>
+                            </div>
+                            <i data-lucide="chevron-right" class="text-amg-gold/50 group-hover:text-amg-gold transition-colors"></i>
+                        </div>
+                        <div class="glass p-6 rounded-xl border border-amg-gold/10 hover:border-amg-gold/40 transition-colors group cursor-pointer flex items-center justify-between">
+                            <div>
+                                <h4 class="font-sora text-white mb-1 group-hover:text-amg-gold transition-colors">Recuperação Estrutural (Lesões)</h4>
+                                <p class="text-xs text-gray-500 font-light uppercase tracking-wider">Ciclo Intensivo</p>
+                            </div>
+                            <i data-lucide="chevron-right" class="text-amg-gold/50 group-hover:text-amg-gold transition-colors"></i>
+                        </div>
+                        <div class="glass p-6 rounded-xl border border-amg-gold/10 hover:border-amg-gold/40 transition-colors group cursor-pointer flex items-center justify-between">
+                            <div>
+                                <h4 class="font-sora text-white mb-1 group-hover:text-amg-gold transition-colors">Revitalização Capilar</h4>
+                                <p class="text-xs text-gray-500 font-light uppercase tracking-wider">Aplicação Localizada</p>
+                            </div>
+                            <i data-lucide="chevron-right" class="text-amg-gold/50 group-hover:text-amg-gold transition-colors"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Lab Reports -->
+        <section id="lab" class="py-32 px-6">
+            <div class="max-w-4xl mx-auto text-center scroll-reveal">
+                <i data-lucide="microscope" class="w-12 h-12 text-amg-gold mx-auto mb-6"></i>
+                <h2 class="text-3xl font-sora font-light mb-4">Transparência <span class="text-gold-gradient">Laboratorial</span></h2>
+                <p class="text-gray-400 font-light mb-12">Pureza atestada acima de 99%. Cada lote acompanha laudo técnico rigoroso garantindo a estrutura peptídica exata.</p>
+                
+                <div class="glass-card max-w-xl mx-auto rounded-2xl p-8 flex items-center justify-between text-left">
+                    <div class="flex items-center gap-6">
+                        <div class="w-12 h-12 rounded-lg bg-amg-green flex items-center justify-center border border-amg-lime/30 text-amg-lime">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-sora font-medium text-white">Lote: 012.004</h4>
+                            <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Validade: 10/27</p>
+                        </div>
+                    </div>
+                    <button class="px-6 py-3 border border-amg-gold/30 text-amg-gold rounded-full text-sm font-sora hover:bg-amg-gold hover:text-black transition-colors uppercase tracking-widest">
+                        Ver PDF
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="border-t border-amg-gold/10 py-10 px-6 text-center text-sm text-gray-600 font-light">
+            <p>&copy; 2026 AMG Peptídeos. Ciência em Alta Performance.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Mouse Glow Effect
+        const cursorGlow = document.getElementById('cursor-glow');
+        window.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // Initialize Lenis (Smooth Scrolling)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Connect GSAP to Lenis
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Hero Animations
+        gsap.from(".hero-anim", {
+            y: 30,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        // Floating Animation
+        gsap.to(".floating-element", {
+            y: -20,
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        // Scroll Reveal Animations
+        gsap.utils.toArray('.scroll-reveal').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>

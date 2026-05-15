@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMG Peptídeos | Hub Central de Protocolos</title>
+    <link rel="icon" type="image/jpg" href="./images/favicon.jpg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amg: {
+                            black: '#030303',
+                            dark: '#0a0f0d',
+                            green: '#121f1a',
+                            gold: '#C4A45C',
+                            goldhover: '#D4B572',
+                            lime: '#7ebd22',
+                            blue: '#111827'
+                        }
+                    },
+                    fontFamily: {
+                        sora: ['Sora', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis & GSAP -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #030303;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .glass-panel {
+            background: rgba(18, 31, 26, 0.3);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(196, 164, 92, 0.08);
+        }
+
+        .protocol-card {
+            background: linear-gradient(180deg, rgba(18, 31, 26, 0.4) 0%, rgba(3, 3, 3, 0.9) 100%);
+            border: 1px solid rgba(196, 164, 92, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .protocol-card:hover {
+            border-color: rgba(196, 164, 92, 0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+        }
+
+        .text-gold-gradient {
+            background: linear-gradient(to right, #C4A45C, #E8D08D, #C4A45C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-inter antialiased relative">
+
+    <div class="noise-overlay"></div>
+
+    <!-- Minimal Header -->
+    <header class="w-full h-24 border-b border-amg-gold/10 px-6 md:px-12 flex items-center justify-between fixed top-0 left-0 glass-panel z-40">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full border border-amg-gold/30 flex items-center justify-center text-amg-gold font-sora font-bold"><img>favicon.jpg<img></div>
+            <span class="font-sora tracking-widest text-xs uppercase font-semibold text-gray-300">AMG Protocolos</span>
+        </div>
+        <a href="https://wa.me/5545999866965?text=Ol%C3%A1%21%20Gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20GHK-Cu%20da%20AMG%20Pept%C3%ADdeos%20e%20falar%20com%20um%20especialista." target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full border border-amg-gold/30 text-xs text-amg-gold font-sora uppercase tracking-widest hover:bg-amg-gold hover:text-black transition-colors">
+            Suporte Técnico
+        </a>
+    </header>
+
+    <!-- Protocols Main Content -->
+    <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto relative z-10">
+        
+        <!-- Welcome Section -->
+        <div class="text-center max-w-3xl mx-auto mb-20 pt-10">
+            <span class="text-xs font-mono text-amg-gold uppercase tracking-[0.3em] block mb-4">Manual de Dosagem Otimizada</span>
+            <h1 class="text-4xl md:text-6xl font-sora font-light mb-6">Guia Técnico <br/><span class="text-gold-gradient font-medium">GHK-Cu 50mg</span></h1>
+            <p class="text-gray-400 font-light leading-relaxed">
+                A aplicação do peptídeo de cobre deve seguir critérios estritos de saturação molecular celular. Selecione o protocolo correspondente aos seus objetivos fisiológicos.
+            </p>
+        </div>
+
+        <!-- The 3 Directed Protocols Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Protocol 1: Estético & Anti-aging -->
+            <div class="protocol-card rounded-3xl p-8 md:p-10 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-8">
+                        <span class="px-3 py-1 glass-panel text-[10px] font-mono uppercase text-amg-gold tracking-wider rounded">Módulo 01</span>
+                        <i data-lucide="sparkles" class="text-amg-gold w-6 h-6"></i>
+                    </div>
+                    <h2 class="font-sora text-2xl font-light text-white mb-4">Foco Estético &<br/><span class="text-gold-gradient font-normal">Anti-aging</span></h2>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed mb-8">
+                        Desenvolvido exclusivamente para a reestruturação da matriz extracelular, atenuação de linhas finas e indução profunda da síntese de colágeno endógeno.
+                    </p>
+                    
+                    <div class="border-t border-white/5 pt-6 space-y-4">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500 font-light">Duração do Ciclo:</span>
+                            <span class="text-gray-300 font-mono">30 a 45 dias</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500 font-light">Frequência:</span>
+                            <span class="text-gray-300 font-mono">Diária (Noturna)</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500 font-light">Concentração Ideal:</span>
+                            <span class="text-amg-lime font-mono">Saturação Moderada</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12">
+                    <div class="p-4 rounded-xl bg-amg-green/20 border border-amg-gold/10 text-xs font-light text-gray-400 leading-relaxed">
+                        <strong class="text-white block font-sora mb-1">Nota de Conservação:</strong>
+                        Manter estritamente refrigerado entre 2°C e 8°C após a adição do diluente estéril.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Protocol 2: Recuperação Estrutural (Lesões) -->
+            <div class="protocol-card rounded-3xl p-8 md:p-10 flex flex-col justify-between border-t-2 border-t-amg-gold/30">
+                <div>
+                    <div class="flex items-center justify-between mb-8">
+                        <span class="px-3 py-1 glass-panel text-[10px] font-mono uppercase text-amg-gold tracking-wider rounded">Módulo 02</span>
+                        <i data-lucide="activity" class="text-amg-gold w-6 h-6"></i>
+                    </div>
+                    <h2 class="font-sora text-2xl font-light text-white mb-4">Recuperação Estrutural<br/><span class="text-gold-gradient font-normal">(Lesões)</span></h2>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed mb-8">
+                        Focado na aceleração drástica da regeneração de tecidos moles, tendões, modulação inflamatória aguda e otimização pós-treino intensivo.
+                    </p>
+                    
+                    <div class="border-t border-white/5 pt-6 space-y-4">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500 font-light">Duração do Ciclo:</span>
+                            <span class="text-gray-300 font-mono">15 a 20 dias (Intensivo)</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500 font-light">Frequência:</span>
+                            <span class="text-gray-300 font-mono">A cada 12 horas</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500 font-light">Concentração Ideal:</span>
+                            <span class="text-amg-gold font-mono">Saturação Alta</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12">
+                    <div class="p-4 rounded-xl bg-amg-green/20 border border-amg-gold/10 text-xs font-light text-gray-400 leading-relaxed">
+                        <strong class="text-white block font-sora mb-1">Aplicação Técnica:</strong>
+                        Recomendado o acompanhamento milimétrico de dosagem em seringas de precisão de 1ml.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Protocol 3: Revitalização Capilar -->
+            <div class="protocol-card rounded-3xl p-8 md:p-10 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-8">
+                        <span class="px-3 py-1 glass-panel text-[10px] font-mono uppercase text-amg-gold tracking-wider rounded">Módulo 03</span>
+                        <i data-lucide="shield" class="text-amg-gold w-6 h-6"></i>
+                    </div>
+                    <h2 class="font-sora text-2xl font-light text-white mb-4">Revitalização<br/><span class="text-gold-gradient font-normal">Capilar</span></h2>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed mb-8">
+                        Atua diretamente no bloqueio da miniaturização folicular, aumentando a vascularização local do couro cabeludo e expandindo a fase anágena.
+                    </p>
+                    
+                    <div class="border-t border-white/5 pt-6 space-y-4">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500 font-light">Duração do Ciclo:</span>
+                            <span class="text-gray-300 font-mono">60 a 90 dias</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500 font-light">Frequência:</span>
+                            <span class="text-gray-300 font-mono">3 vezes por semana</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500 font-light">Concentração Ideal:</span>
+                            <span class="text-blue-400 font-mono">Aplicação Localizada</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12">
+                    <div class="p-4 rounded-xl bg-amg-green/20 border border-amg-gold/10 text-xs font-light text-gray-400 leading-relaxed">
+                        <strong class="text-white block font-sora mb-1">Sinergia Otimizada:</strong>
+                        Altamente eficaz se integrado a protocolos de microagulhamento ou tônicos de ancoragem folicular.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Back Link Footer -->
+        <div class="text-center mt-20">
+            <p class="text-xs text-gray-600 font-light mb-4">Dúvidas adicionais sobre diluição e reconstituição molecular?</p>
+            <a href="https://wa.me/5545999866965?text=Ol%C3%A1%21%20Gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20GHK-Cu%20da%20AMG%20Pept%C3%ADdeos%20e%20falar%20com%20um%20especialista." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-sora text-amg-gold uppercase tracking-widest hover:text-white transition-colors">
+                <span>Falar com Especialista AMG</span>
+                <i data-lucide="external-link" class="w-3 h-3"></i>
+            </a>
+        </div>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+        const lenis = new Lenis({ duration: 1.2 });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+    </script>
+</body>
+</html>
