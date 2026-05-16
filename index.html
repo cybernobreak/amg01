@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMG Peptídeos | GHK-Cu Premium</title>
-    <link rel="icon" type="image/png" href="./images/favicon.jpg">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -146,7 +145,8 @@
             <span class="font-sora tracking-widest text-xs uppercase font-semibold text-gray-300">AMG Peptídeos</span>
         </div>
     </header>
-    
+
+
     <!-- Sidebar Desktop -->
     <nav class="hidden md:flex fixed left-0 top-0 h-screen w-24 glass flex-col items-center justify-between py-10 z-40 transition-all hover:w-64 group border-r border-amg-gold/10 hover:border-amg-gold/30">
         <div class="flex flex-col items-center w-full gap-8">
@@ -229,7 +229,7 @@
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-16 scroll-reveal">
                     <h2 class="text-4xl md:text-5xl font-sora font-light text-white mb-6">A Essência da <span class="text-gold-gradient">Apresentação</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">Pureza preservada em embalagem sob medida.</p>
+                    <p class="text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">Pureza preservada em embalagem sob medida, transmitindo luxo silencioso e rigor biomédico.</p>
                 </div>
 
                 <div class="image-container aspect-video max-w-4xl mx-auto scroll-reveal border-amg-gold/20">
@@ -329,7 +329,7 @@
                     <span class="px-4 py-2 glass rounded-md text-xs font-mono text-gray-300">Capilar</span>
                 </div>
                 <div>
-                    <a href="amg_protocols_website.html" class="inline-flex items-center gap-2 px-6 py-3 border border-amg-gold/50 rounded-full text-amg-gold hover:bg-amg-gold hover:text-black transition-colors font-sora text-sm uppercase tracking-widest">Acessar Guia Completo</a>
+                    <a href="protocolo.html" class="inline-flex items-center gap-2 px-6 py-3 border border-amg-gold/50 rounded-full text-amg-gold hover:bg-amg-gold hover:text-black transition-colors font-sora text-sm uppercase tracking-widest">Acessar Guia Completo</a>
                 </div>
             </div>
         </section>
@@ -386,19 +386,58 @@
                 <h2 class="text-3xl font-sora font-light mb-4">Transparência <span class="text-gold-gradient">Laboratorial</span></h2>
                 <p class="text-gray-400 font-light mb-12">Pureza atestada acima de 99%. Cada lote acompanha laudo técnico rigoroso garantindo a estrutura peptídica exata.</p>
                 
-                <div class="glass-card max-w-xl mx-auto rounded-2xl p-8 flex items-center justify-between text-left">
-                    <div class="flex items-center gap-6">
-                        <div class="w-12 h-12 rounded-lg bg-amg-green flex items-center justify-center border border-amg-lime/30 text-amg-lime">
-                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                <div class="space-y-6 max-w-2xl mx-auto">
+                    <!-- Lote 50mg -->
+                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-red-900/50 relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-900/10 rounded-full blur-xl pointer-events-none"></div>
+                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
+                            <div class="w-12 h-12 rounded-lg bg-amg-dark flex items-center justify-center border border-gray-800 text-gray-500 shrink-0">
+                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-1">
+                                    <h4 class="font-sora font-medium text-gray-400">GHK-CU 50mg</h4>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-red-900/20 text-red-400 border border-red-900/30">Esgotado</span>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
+                                    <span>Lote: 012.004</span>
+                                    <span>•</span>
+                                    <span>Fab: 04/26</span>
+                                    <span>•</span>
+                                    <span>Val: 10/27</span>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-sora font-medium text-white">Lote: 012.004</h4>
-                            <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Validade: 10/27</p>
-                        </div>
+                        <a href="./images/laudo-tecnico.pdf" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto text-center px-6 py-3 border border-gray-700 text-gray-400 rounded-full text-xs font-sora hover:bg-gray-800 hover:text-white transition-colors uppercase tracking-widest shrink-0">
+                            Ver PDF (Arquivo)
+                        </a>
                     </div>
-                    <button class="px-6 py-3 border border-amg-gold/30 text-amg-gold rounded-full text-sm font-sora hover:bg-amg-gold hover:text-black transition-colors uppercase tracking-widest">
-                        Ver PDF
-                    </button>
+
+                    <!-- Lote 100mg -->
+                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-amg-gold relative overflow-hidden shadow-[0_0_30px_rgba(196,164,92,0.05)]">
+                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-amg-gold/10 rounded-full blur-xl pointer-events-none"></div>
+                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
+                            <div class="w-12 h-12 rounded-lg bg-amg-green flex items-center justify-center border border-amg-lime/30 text-amg-lime shrink-0">
+                                <i data-lucide="file-check-2" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-1">
+                                    <h4 class="font-sora font-medium text-white">GHK-CU 100mg</h4>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-amg-lime/10 text-amg-lime border border-amg-lime/20">Disponível</span>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-400 uppercase tracking-widest mt-2 font-mono">
+                                    <span class="text-amg-gold">Lote: 014.006</span>
+                                    <span>•</span>
+                                    <span>Fab: 06/26</span>
+                                    <span>•</span>
+                                    <span>Val: 12/27</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="./images/laudo-tecnico.pdf" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto text-center px-6 py-3 bg-amg-gold/10 border border-amg-gold/50 text-amg-gold rounded-full text-xs font-sora hover:bg-amg-gold hover:text-black transition-colors uppercase tracking-widest shrink-0 shadow-[0_0_15px_rgba(196,164,92,0.2)]">
+                            Ver PDF do Laudo
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
