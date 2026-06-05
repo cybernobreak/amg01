@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMG Peptídeos | GHK-Cu Premium</title>
+    <title>AMG Peptídeos | Alta Performance</title>
     <link rel="icon" type="image/jpg" href="./images/favicon.jpg">
     
     <!-- Fonts -->
@@ -19,13 +19,12 @@
                 extend: {
                     colors: {
                         amg: {
-                            black: '#030303',
-                            dark: '#0a0f0d',
-                            green: '#121f1a',
-                            gold: '#C4A45C',
-                            goldhover: '#D4B572',
-                            lime: '#7ebd22',
-                            blue: '#1e3a8a'
+                            bg: '#F5F3EC',      /* Fundo creme elegante */
+                            text: '#1A1A1A',    /* Texto quase preto */
+                            muted: '#6B6B6B',   /* Texto secundário cinza */
+                            gold: '#A38650',    /* Dourado fosco */
+                            goldhover: '#826A3D',
+                            border: '#E3DCC8'
                         }
                     },
                     fontFamily: {
@@ -47,8 +46,8 @@
 
     <style>
         body {
-            background-color: #030303;
-            color: #ffffff;
+            background-color: #F5F3EC;
+            color: #1A1A1A;
             overflow-x: hidden;
         }
         
@@ -58,603 +57,561 @@
             pointer-events: none;
             z-index: 50;
             opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        #cursor-glow {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(196, 164, 92, 0.08) 0%, rgba(0,0,0,0) 60%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            transition: left 0.1s ease-out, top 0.1s ease-out;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
         .glass {
-            background: rgba(18, 31, 26, 0.4);
+            background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(196, 164, 92, 0.1);
+            border: 1px solid rgba(163, 134, 80, 0.15);
         }
         
         .glass-card {
-            background: linear-gradient(145deg, rgba(18, 31, 26, 0.6) 0%, rgba(10, 15, 13, 0.8) 100%);
+            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(196, 164, 92, 0.05);
+            border: 1px solid rgba(163, 134, 80, 0.15);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
         .glass-card:hover {
-            border-color: rgba(196, 164, 92, 0.4);
-            box-shadow: inset 0 0 30px rgba(196, 164, 92, 0.05), 0 10px 40px rgba(0,0,0,0.5);
-            transform: translateY(-5px);
+            border-color: rgba(163, 134, 80, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transform: translateY(-3px);
         }
 
         .text-gold-gradient {
-            background: linear-gradient(to right, #C4A45C, #E8D08D, #C4A45C);
+            background: linear-gradient(to right, #A38650, #C2A56D, #A38650);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% auto;
-            animation: shine 4s linear infinite;
+            animation: shine 5s linear infinite;
         }
 
         @keyframes shine {
-            to {{ background-position: 200% center; }}
+            to { background-position: 200% center; }
         }
 
         .image-container {
             position: relative;
             width: 100%;
-            border-radius: 20px;
-            background: linear-gradient(145deg, #0e1714, #050807);
-            border: 1px solid rgba(196, 164, 92, 0.1);
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            opacity: 0.85;
-            transition: transform 0.6s ease;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            transition: transform 0.8s ease;
         }
         
         .image-container:hover img {
-            transform: scale(1.03);
-            opacity: 1;
+            transform: scale(1.02);
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #030303; }
-        ::-webkit-scrollbar-thumb { background: #121f1a; border-radius: 4px; border: 1px solid rgba(196, 164, 92, 0.2); }
-        ::-webkit-scrollbar-thumb:hover { background: #C4A45C; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F5F3EC; }
+        ::-webkit-scrollbar-thumb { background: #D6D0C4; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #A38650; }
     </style>
-
-    <!-- Open Graph / WhatsApp Preview Meta Tags -->
-    <meta property="og:title" content="AMG Peptídeos | GHK-Cu Premium">
-    <meta property="og:description" content="Laboratório de Luxo focado em Biotecnologia de Alta Performance. A essência da regeneração celular e redensificação estrutural.">
-    <meta property="og:image" content="./images/favicon.jpg">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AMG Peptídeos | GHK-Cu Premium">
-    <meta name="twitter:description" content="Laboratório de Luxo focado em Biotecnologia de Alta Performance. A essência da regeneração celular e redensificação estrutural.">
-    <meta name="twitter:image" content="./images/favicon.jpg">
-
 </head>
-<body class="font-inter antialiased selection:bg-amg-gold selection:text-black relative">
+<body class="font-inter antialiased selection:bg-amg-gold selection:text-white relative">
 
     <div class="noise-overlay"></div>
-    <div id="cursor-glow" class="hidden lg:block"></div>
-
-    <!-- Mobile Header -->
-    <header class="md:hidden fixed top-0 left-0 w-full h-20 glass z-40 flex items-center justify-between px-6 border-b border-amg-gold/10 shadow-lg">
-        <div class="flex items-center gap-3">
-            <img src="./images/favicon.jpg" alt="AMG Logo" class="w-10 h-10 rounded-full object-cover border border-amg-gold/30 shadow-[0_0_10px_rgba(196,164,92,0.2)]">
-            <span class="font-sora tracking-widest text-xs uppercase font-semibold text-gray-300">AMG Peptídeos</span>
-        </div>
-    </header>
-
 
     <!-- Sidebar Desktop -->
-    <nav class="hidden md:flex fixed left-0 top-0 h-screen w-24 glass flex-col items-center justify-between py-10 z-40 transition-all hover:w-64 group border-r border-amg-gold/10 hover:border-amg-gold/30">
+    <nav class="hidden md:flex fixed left-0 top-0 h-screen w-20 glass flex-col items-center justify-between py-10 z-40 transition-all hover:w-56 group border-r border-amg-gold/10">
         <div class="flex flex-col items-center w-full gap-8">
-            <img src="./images/favicon.jpg" alt="AMG Logo" class="w-12 h-12 rounded-full object-cover border border-amg-gold/30 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(196,164,92,0.2)]">
-            <div class="w-full px-6 flex flex-col gap-5 mt-8">
-                <a href="#hero" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4 py-2">
-                    <i data-lucide="home" class="w-5 h-5 shrink-0"></i>
-                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-xs tracking-widest uppercase">Início</span>
+            <img src="./images/favicon.jpg" alt="AMG Logo" class="w-10 h-10 rounded-full object-cover border border-amg-gold/30">
+            <div class="w-full px-5 flex flex-col gap-6 mt-8">
+                <a href="#hero" class="flex items-center text-amg-muted hover:text-amg-gold transition-colors gap-4">
+                    <i data-lucide="home" class="w-4 h-4 shrink-0"></i>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-[10px] tracking-widest uppercase">Início</span>
                 </a>
-                <a href="#showcase" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4 py-2">
-                    <i data-lucide="flask-conical" class="w-5 h-5 shrink-0"></i>
-                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-xs tracking-widest uppercase">Showcase</span>
+                <a href="#portfolio" class="flex items-center text-amg-muted hover:text-amg-gold transition-colors gap-4">
+                    <i data-lucide="grid" class="w-4 h-4 shrink-0"></i>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-[10px] tracking-widest uppercase">Portfólio</span>
                 </a>
-                <a href="#gallery" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4 py-2">
-                    <i data-lucide="aperture" class="w-5 h-5 shrink-0"></i>
-                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-xs tracking-widest uppercase">Galeria</span>
+                <a href="#gallery" class="flex items-center text-amg-muted hover:text-amg-gold transition-colors gap-4">
+                    <i data-lucide="aperture" class="w-4 h-4 shrink-0"></i>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-[10px] tracking-widest uppercase">Estrutura</span>
                 </a>
-                <a href="#benefits" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4 py-2">
-                    <i data-lucide="activity" class="w-5 h-5 shrink-0"></i>
-                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-xs tracking-widest uppercase">Benefícios</span>
+                <a href="#lab" class="flex items-center text-amg-muted hover:text-amg-gold transition-colors gap-4">
+                    <i data-lucide="microscope" class="w-4 h-4 shrink-0"></i>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-[10px] tracking-widest uppercase">Lotes</span>
                 </a>
-                <a href="#protocols" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4 py-2">
-                    <i data-lucide="layers" class="w-5 h-5 shrink-0"></i>
-                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-xs tracking-widest uppercase">Protocolos</span>
-                </a>
-                <a href="#contact" class="flex items-center text-gray-400 hover:text-amg-gold transition-colors gap-4 py-2">
-                    <i data-lucide="message-square" class="w-5 h-5 shrink-0"></i>
-                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-xs tracking-widest uppercase">Onde Encontrar</span>
+                <a href="#contact" class="flex items-center text-amg-muted hover:text-amg-gold transition-colors gap-4">
+                    <i data-lucide="phone" class="w-4 h-4 shrink-0"></i>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-[10px] tracking-widest uppercase">Contato</span>
                 </a>
             </div>
         </div>
-        <a href="#lab" class="flex items-center text-gray-500 hover:text-white transition-colors gap-4 px-6 w-full py-2">
-            <i data-lucide="file-check-2" class="w-5 h-5 shrink-0"></i>
-            <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-medium text-xs tracking-widest uppercase">Laudos Técnicos</span>
-        </a>
-    </nav>
-
-    <!-- Dock Mobile -->
-    <nav class="md:hidden fixed bottom-6 left-4 right-4 h-16 glass rounded-2xl z-40 flex items-center justify-around px-2 shadow-2xl">
-        <a href="#hero" class="p-2 text-gray-400 hover:text-amg-gold"><i data-lucide="home" class="w-5 h-5"></i></a>
-        <a href="#gallery" class="p-2 text-gray-400 hover:text-amg-gold"><i data-lucide="aperture" class="w-5 h-5"></i></a>
-        <a href="#protocols" class="p-2 text-gray-400 hover:text-amg-gold"><i data-lucide="layers" class="w-5 h-5"></i></a>
-        <a href="#contact" class="p-2 text-gray-400 hover:text-amg-gold"><i data-lucide="message-square" class="w-5 h-5"></i></a>
     </nav>
 
     <!-- Main Content -->
-    <main class="md:ml-24 relative z-10">
+    <main class="md:ml-20 relative z-10">
         
         <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex items-center justify-center relative px-6 py-20 overflow-hidden">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amg-green rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
-            
+        <section id="hero" class="min-h-screen flex items-center justify-center relative px-6 py-20">
             <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between w-full gap-16 relative z-10">
                 <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-                    <p class="text-amg-gold font-sora tracking-[0.3em] text-sm uppercase mb-6 hero-anim">Biotech Premium</p>
-                    <h1 class="text-6xl md:text-8xl font-sora font-light text-white mb-4 hero-anim tracking-tight">
+                    <p class="text-amg-gold font-sora tracking-[0.3em] text-xs uppercase mb-6 hero-anim font-medium">Biotecnologia Avançada</p>
+                    <h1 class="text-5xl md:text-7xl font-sora font-light text-amg-text mb-6 hero-anim tracking-tight">
                         AMG <br/>
                         <span class="text-gold-gradient font-medium">PEPTÍDEOS</span>
                     </h1>
-                    <p class="text-xl md:text-2xl text-gray-400 font-light mb-10 hero-anim max-w-lg">
-                        GHK-Cu | <span class="text-gray-300">Copper Tripeptide-1</span>
+                    <p class="text-lg text-amg-muted font-light mb-10 hero-anim max-w-md leading-relaxed">
+                        Padrão farmacêutico premium. Ciência, pureza e excelência para resultados reais em performance e estética avançada.
                     </p>
                     
-                    <a href="#showcase" class="hero-anim inline-flex items-center justify-center gap-3 px-8 py-4 glass rounded-full text-amg-gold border border-amg-gold/30 hover:border-amg-gold hover:shadow-[0_0_20px_rgba(196,164,92,0.2)] transition-all group">
-                        <span class="font-sora tracking-widest uppercase text-sm">Explorar Design</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    <a href="#portfolio" class="hero-anim inline-flex items-center justify-center gap-3 px-8 py-3 border border-amg-gold text-amg-gold rounded-sm hover:bg-amg-gold hover:text-white transition-all group">
+                        <span class="font-sora tracking-widest uppercase text-[10px] font-medium">Acessar Portfólio</span>
+                        <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
 
-                <div class="flex-1 flex justify-center lg:justify-end hero-anim">
-                    <div class="image-container max-w-[360px] aspect-[3/4] floating-element border border-amg-gold/20">
-                        <img src="./images/vial-inclinado.png" alt="AMG GHK-Cu Top Lid" class="w-full h-full object-cover">
+                <div class="flex-1 flex justify-center lg:justify-end hero-anim w-full">
+                    <div class="image-container w-full max-w-[500px]">
+                        <img src="./images/4981285314965998534.jpg" alt="AMG GHK-Cu 100mg" class="w-full h-auto">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Showcase Section -->
-        <section id="showcase" class="py-32 px-6 relative bg-amg-dark/50 border-y border-amg-gold/5">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center mb-16 scroll-reveal">
-                    <h2 class="text-4xl md:text-5xl font-sora font-light text-white mb-6">A Essência da <span class="text-gold-gradient">Apresentação</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">Pureza preservada em embalagem sob medida, transmitindo luxo silencioso e rigor biomédico.</p>
-                </div>
-
-                <div class="image-container aspect-video max-w-4xl mx-auto scroll-reveal border-amg-gold/20">
-                    <img src="./images/caixa-e-vial.jpg" alt="Caixa e Vial GHK-Cu 50mg" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-amg-black via-transparent to-transparent z-10 pointer-events-none"></div>
-                    <div class="absolute bottom-8 left-8 z-20 pointer-events-none">
-                        <span class="text-amg-gold text-xs uppercase font-sora tracking-[0.2em] block mb-2">Apresentação Oficial</span>
-                        <h3 class="text-2xl font-sora text-white font-light drop-shadow-lg"></h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-32 px-6 bg-amg-black">
+        <!-- Portfólio Section -->
+        <section id="portfolio" class="py-24 px-6 border-y border-amg-gold/10 relative">
             <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-20 scroll-reveal">
-                    <h2 class="text-4xl font-sora font-light text-white mb-4">Perspectivas do <span class="text-gold-gradient">Produto</span></h2>
-                    <p class="text-gray-400 font-light text-sm tracking-wider uppercase">Análise visual detalhada em ambiente controlado</p>
+                <div class="text-center mb-16 scroll-reveal">
+                    <p class="text-amg-gold font-sora tracking-[0.2em] text-[10px] uppercase mb-3 font-medium">Catálogo Oficial</p>
+                    <h2 class="text-3xl md:text-4xl font-sora font-light text-amg-text mb-6">Portfólio <span class="text-gold-gradient">Premium</span></h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="image-container aspect-[2/3] scroll-reveal border-amg-gold/20">
-                        <img src="./images/vial-tampa.jpg" alt="Vial Inclinado" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10 pointer-events-none"></div>
-                        <div class="absolute bottom-6 left-6 right-6 z-20 pointer-events-none">
-                            <h4 class="font-sora text-lg text-white"></h4>
-                            <p class="text-xs text-gray-400 mt-1 font-light"></p>
+                <!-- Foto Completa do Portfólio -->
+                <div class="image-container w-full mb-20 scroll-reveal">
+                    <img src="./images/4981285314965998533.jpg" alt="Linha Completa AMG Peptídeos" class="w-full h-auto">
+                </div>
+
+                <!-- Destaques GHK-Cu -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16 scroll-reveal items-center">
+                    <div class="glass-card p-10 rounded-sm">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-sora text-2xl text-amg-text">GHK-Cu <span class="text-amg-gold text-lg">100mg & 50mg</span></h3>
+                            <span class="px-2 py-1 border border-amg-gold/30 text-amg-gold text-[9px] uppercase tracking-widest font-medium bg-amg-gold/5">Destaque</span>
+                        </div>
+                        <p class="text-amg-muted text-sm font-light mb-6 leading-relaxed">
+                            Peptídeo naturalmente encontrado no organismo, conhecido por sua afinidade com o cobre. Amplamente estudado em pesquisas de regeneração tecidual, qualidade da pele e processos biológicos associados ao envelhecimento.
+                        </p>
+                        <ul class="space-y-3 mb-8 text-xs text-amg-text font-light">
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-amg-gold shrink-0"></i>Apoio à revitalização da pele e regeneração cutânea.</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-amg-gold shrink-0"></i>Interesse em protocolos de rejuvenescimento estético.</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-amg-gold shrink-0"></i>Suporte à qualidade e aparência dos tecidos.</li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-amg-gold shrink-0"></i>Interesse crescente em protocolos capilares avançados.</li>
+                        </ul>
+                        <div class="pt-5 border-t border-amg-gold/10">
+                            <span class="block text-[10px] text-amg-gold font-sora uppercase tracking-widest mb-1">Forma de Aplicação</span>
+                            <span class="text-xs text-amg-muted">Conforme protocolo específico. Protocolo AMG enviado após a compra!</span>
+                        </div>
+                    </div>
+
+                    <div class="image-container w-full h-full max-h-[500px]">
+                        <img src="./images/4981285314965998536.jpg" alt="Apresentação GHK-Cu" class="w-full h-full">
+                    </div>
+                </div>
+
+                <!-- Grid Novos Produtos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="glass-card p-8 rounded-sm scroll-reveal flex flex-col">
+                        <h4 class="font-sora text-xl text-amg-text mb-3">Ipamorelin</h4>
+                        <p class="text-amg-muted text-xs font-light mb-6 flex-grow">Peptídeo amplamente estudado por sua interação com mecanismos relacionados à liberação do hormônio do crescimento.</p>
+                        <ul class="space-y-2 text-[11px] text-amg-text font-light mb-6">
+                            <li>• Suporte à recuperação física</li>
+                            <li>• Auxílio na manutenção da composição corporal</li>
+                            <li>• Potencial apoio à qualidade do sono</li>
+                            <li>• Interesse em protocolos de performance</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-amg-gold/10">
+                            <span class="text-[9px] text-amg-gold font-sora uppercase tracking-widest block mb-1">Aplicação</span>
+                            <span class="text-[11px] text-amg-muted font-medium">Protocolo entregue após a compra!</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-sm scroll-reveal flex flex-col">
+                        <h4 class="font-sora text-xl text-amg-text mb-3">Glow</h4>
+                        <p class="text-amg-muted text-xs font-light mb-6 flex-grow">Blend desenvolvido com foco em estética avançada, qualidade da pele e revitalização geral.</p>
+                        <ul class="space-y-2 text-[11px] text-amg-text font-light mb-6">
+                            <li>• Aparência mais saudável da pele</li>
+                            <li>• Apoio à hidratação e luminosidade</li>
+                            <li>• Potencial suporte à regeneração tecidual</li>
+                            <li>• Contribuição para rejuvenescimento</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-amg-gold/10">
+                            <span class="text-[9px] text-amg-gold font-sora uppercase tracking-widest block mb-1">Aplicação</span>
+                            <span class="text-[11px] text-amg-muted font-medium">Protocolo entregue após a compra!</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-sm scroll-reveal flex flex-col">
+                        <h4 class="font-sora text-xl text-amg-text mb-3">Klow</h4>
+                        <p class="text-amg-muted text-xs font-light mb-6 flex-grow">Formulação voltada para protocolos de bem-estar, recuperação e equilíbrio metabólico.</p>
+                        <ul class="space-y-2 text-[11px] text-amg-text font-light mb-6">
+                            <li>• Suporte à recuperação do organismo</li>
+                            <li>• Auxílio em protocolos de performance</li>
+                            <li>• Potencial apoio ao metabolismo</li>
+                            <li>• Estratégias de longevidade</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-amg-gold/10">
+                            <span class="text-[9px] text-amg-gold font-sora uppercase tracking-widest block mb-1">Aplicação</span>
+                            <span class="text-[11px] text-amg-muted font-medium">Protocolo entregue após a compra!</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-sm scroll-reveal flex flex-col">
+                        <h4 class="font-sora text-xl text-amg-text mb-3">CBL-514</h4>
+                        <p class="text-amg-muted text-xs font-light mb-6 flex-grow">Composto investigacional estudado em protocolos relacionados à composição corporal.</p>
+                        <ul class="space-y-2 text-[11px] text-amg-text font-light mb-6">
+                            <li>• Estratégias de remodelação corporal</li>
+                            <li>• Estudos sobre tecido adiposo localizado</li>
+                            <li>• Aplicação em estética avançada</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-amg-gold/10">
+                            <span class="text-[9px] text-amg-gold font-sora uppercase tracking-widest block mb-1">Aplicação</span>
+                            <span class="text-[11px] text-amg-muted font-medium">Protocolo entregue após a compra!</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-sm scroll-reveal flex flex-col">
+                        <h4 class="font-sora text-xl text-amg-text mb-3">GH Frag</h4>
+                        <p class="text-amg-muted text-xs font-light mb-6 flex-grow">Fragmento peptídico derivado do hormônio do crescimento amplamente estudado.</p>
+                        <ul class="space-y-2 text-[11px] text-amg-text font-light mb-6">
+                            <li>• Apoio a estratégias de definição corporal</li>
+                            <li>• Interesse em redução de gordura localizada</li>
+                            <li>• Complemento para condicionamento físico</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-amg-gold/10">
+                            <span class="text-[9px] text-amg-gold font-sora uppercase tracking-widest block mb-1">Aplicação</span>
+                            <span class="text-[11px] text-amg-muted font-medium">Protocolo entregue após a compra!</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-sm scroll-reveal flex flex-col">
+                        <h4 class="font-sora text-xl text-amg-text mb-3">Tesamorelin</h4>
+                        <p class="text-amg-muted text-xs font-light mb-6 flex-grow">Peptídeo estudado por sua capacidade de estimular mecanismos relacionados ao hormônio do crescimento.</p>
+                        <ul class="space-y-2 text-[11px] text-amg-text font-light mb-6">
+                            <li>• Suporte à composição corporal</li>
+                            <li>• Interesse em protocolos de longevidade</li>
+                            <li>• Potencial auxílio na recuperação física</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-amg-gold/10">
+                            <span class="text-[9px] text-amg-gold font-sora uppercase tracking-widest block mb-1">Aplicação</span>
+                            <span class="text-[11px] text-amg-muted font-medium">Protocolo entregue após a compra!</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-sm scroll-reveal flex flex-col lg:col-start-2">
+                        <h4 class="font-sora text-xl text-amg-text mb-3">BPC-157</h4>
+                        <p class="text-amg-muted text-xs font-light mb-6 flex-grow">Peptídeo amplamente conhecido em estudos relacionados à recuperação e regeneração tecidual.</p>
+                        <ul class="space-y-2 text-[11px] text-amg-text font-light mb-6">
+                            <li>• Suporte aos processos naturais de recuperação</li>
+                            <li>• Protocolos para tecidos musculares/articulares</li>
+                            <li>• Auxílio em estratégias de recuperação esportiva</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-amg-gold/10">
+                            <span class="text-[9px] text-amg-gold font-sora uppercase tracking-widest block mb-1">Aplicação</span>
+                            <span class="text-[11px] text-amg-muted font-medium">Protocolo entregue após a compra!</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Rodapé Institucional -->
+                <div class="mt-24 pt-10 border-t border-amg-gold/10 text-center max-w-2xl mx-auto scroll-reveal">
+                    <h5 class="text-amg-gold font-sora tracking-[0.2em] text-xs uppercase mb-4 font-medium">AMG PEPTÍDEOS</h5>
+                    <p class="text-amg-muted text-[11px] font-light leading-relaxed uppercase tracking-widest">
+                        Produtos desenvolvidos sob rigorosos padrões de qualidade, pureza e controle, destinados a protocolos específicos conduzidos por profissionais habilitados. Tecnologia, ciência e excelência em cada etapa do processo.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Estrutura & Galeria -->
+        <section id="gallery" class="py-24 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div class="image-container scroll-reveal">
+                        <img src="./images/4981285314965998535.jpg" alt="Manuseio AMG Peptídeos" class="w-full h-auto">
+                    </div>
+                    <div class="image-container scroll-reveal">
+                        <img src="./images/4981285314965998537.jpg" alt="Infográfico e Pureza AMG" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Laudos e Lotes -->
+        <section id="lab" class="py-24 px-6 border-t border-amg-gold/10 relative">
+            <div class="max-w-4xl mx-auto scroll-reveal">
+                <div class="text-center mb-16">
+                    <i data-lucide="microscope" class="w-8 h-8 text-amg-gold mx-auto mb-4"></i>
+                    <h2 class="text-3xl font-sora font-light text-amg-text mb-4">Transparência <span class="text-gold-gradient">Laboratorial</span></h2>
+                    <p class="text-amg-muted font-light mb-12 max-w-2xl mx-auto text-sm">
+                        Pureza atestada. Cada lote acompanha laudo técnico rigoroso garantindo a estrutura peptídica exata e preservação da cadeia.
+                    </p>
+                </div>
+                
+                <div class="space-y-5">
+                    
+                    <!-- Lotes Esgotados -->
+                    <div class="glass-card rounded-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-4 border-l-4 border-l-red-300">
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="w-10 h-10 rounded-sm bg-white flex items-center justify-center border border-red-100 text-red-400 shrink-0">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h4 class="font-sora text-sm font-medium text-amg-text">GHK-CU 50mg <span class="text-xs text-amg-muted font-normal ml-1">(2.750 un.)</span></h4>
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-mono tracking-widest uppercase bg-red-50 text-red-600 border border-red-200">Esgotado</span>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-x-3 text-[10px] text-amg-muted uppercase tracking-widest mt-1 font-mono">
+                                    <span>Lote: 007.001</span> • <span>Fab: 12/25</span> • <span>Val: 06/2027</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-4 border-l-4 border-l-red-300">
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="w-10 h-10 rounded-sm bg-white flex items-center justify-center border border-red-100 text-red-400 shrink-0">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h4 class="font-sora text-sm font-medium text-amg-text">GHK-CU 100mg <span class="text-xs text-amg-muted font-normal ml-1">(3.500 un.)</span></h4>
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-mono tracking-widest uppercase bg-red-50 text-red-600 border border-red-200">Esgotado</span>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-x-3 text-[10px] text-amg-muted uppercase tracking-widest mt-1 font-mono">
+                                    <span>Lote: 007.002</span> • <span>Fab: 12/25</span> • <span>Val: 06/2027</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-4 border-l-4 border-l-red-300">
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="w-10 h-10 rounded-sm bg-white flex items-center justify-center border border-red-100 text-red-400 shrink-0">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h4 class="font-sora text-sm font-medium text-amg-text">GHK-CU 100mg <span class="text-xs text-amg-muted font-normal ml-1">(2.500 un.)</span></h4>
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-mono tracking-widest uppercase bg-red-50 text-red-600 border border-red-200">Esgotado</span>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-x-3 text-[10px] text-amg-muted uppercase tracking-widest mt-1 font-mono">
+                                    <span>Lote: 008.002</span> • <span>Fab: 01/26</span> • <span>Val: 08/2027</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-4 border-l-4 border-l-red-300">
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="w-10 h-10 rounded-sm bg-white flex items-center justify-center border border-red-100 text-red-400 shrink-0">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h4 class="font-sora text-sm font-medium text-amg-text">GHK-CU 50mg <span class="text-xs text-amg-muted font-normal ml-1">(2.000 un.)</span></h4>
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-mono tracking-widest uppercase bg-red-50 text-red-600 border border-red-200">Esgotado</span>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-x-3 text-[10px] text-amg-muted uppercase tracking-widest mt-1 font-mono">
+                                    <span>Lote: 009.003</span> • <span>Fab: 02/26</span> • <span>Val: 08/2027</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="image-container aspect-[2/3] scroll-reveal border-amg-gold/20">
-                        <img src="./images/manuseio-luva.jpg" alt="Rigor e Manuseio" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10 pointer-events-none"></div>
-                        <div class="absolute bottom-6 left-6 right-6 z-20 pointer-events-none">
-                            <h4 class="font-sora text-lg text-white"></h4>
-                            <p class="text-xs text-gray-400 mt-1 font-light"></p>
-                        </div>
-                    </div>
-
-                    <div class="image-container aspect-[2/3] scroll-reveal border-amg-gold/20">
-                        <img src="./images/visao-macro.jpg" alt="Visão Frontal Macro" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10 pointer-events-none"></div>
-                        <div class="absolute bottom-6 left-6 right-6 z-20 pointer-events-none">
-                            <h4 class="font-sora text-lg text-white"></h4>
-                            <p class="text-xs text-gray-400 mt-1 font-light"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Benefits Section -->
-        <section id="benefits" class="py-32 px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-20 scroll-reveal">
-                    <div>
-                        <h2 class="text-4xl md:text-5xl font-sora font-light mb-4">Mecanismos de <span class="text-gold-gradient">Ação</span></h2>
-                    </div>
-                    <p class="text-gray-400 max-w-md text-sm md:text-right font-light tracking-wide uppercase">Potência silenciosa.<br/>Resultados evidentes celularmente.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="glass-card p-10 rounded-2xl scroll-reveal">
-                        <div class="w-12 h-12 rounded-full glass flex items-center justify-center border border-amg-gold/20 mb-8 text-amg-gold">
-                            <i data-lucide="dna" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="font-sora text-xl mb-4 text-white">Síntese de Colágeno</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed font-light">Estimula a produção natural de colágeno e elastina, restaurando a firmeza estrutural e densidade da pele de forma profunda.</p>
-                    </div>
-                    <div class="glass-card p-10 rounded-2xl scroll-reveal">
-                        <div class="w-12 h-12 rounded-full glass flex items-center justify-center border border-amg-gold/20 mb-8 text-amg-gold">
-                            <i data-lucide="activity" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="font-sora text-xl mb-4 text-white">Regeneração Tecidual</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed font-light">Acelera drasticamente a cicatrização e recuperação muscular pós-treino, planejando a modulação das vias inflamatórias.</p>
-                    </div>
-                    <div class="glass-card p-10 rounded-2xl scroll-reveal">
-                        <div class="w-12 h-12 rounded-full glass flex items-center justify-center border border-amg-gold/20 mb-8 text-amg-gold">
-                            <i data-lucide="sparkles" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="font-sora text-xl mb-4 text-white">Redensificação Capilar</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed font-light">Aumenta o tamanho dos folículos capilares e prolonga a fase de crescimento (anágena) para fios densos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Protocols Teaser Grid -->
-        <section id="protocols" class="py-32 px-6 bg-amg-dark/30 border-t border-amg-gold/5">
-            <div class="max-w-4xl mx-auto text-center scroll-reveal">
-                <h2 class="text-3xl font-sora font-light mb-6">Protocolos Clínicos e Guias Técnicos</h2>
-                <p class="text-gray-400 font-light mb-8">Disponibilizamos planilhas e páginas dedicadas exclusivas detalhando a dosagem exata para cada objetivo.</p>
-                <div class="inline-flex gap-4 mb-8">
-                    <span class="px-4 py-2 glass rounded-md text-xs font-mono text-gray-300">Estético</span>
-                    <span class="px-4 py-2 glass rounded-md text-xs font-mono text-gray-300">Recuperação</span>
-                    <span class="px-4 py-2 glass rounded-md text-xs font-mono text-gray-300">Capilar</span>
-                </div>
-                <div>
-                    <a href="protocolo.html" class="inline-flex items-center gap-2 px-6 py-3 border border-amg-gold/50 rounded-full text-amg-gold hover:bg-amg-gold hover:text-black transition-colors font-sora text-sm uppercase tracking-widest">Acessar Guia Completo</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT & WHERE TO FIND SECTION (Added before Laudos) -->
-        <section id="contact" class="py-32 px-6 bg-gradient-to-b from-amg-black to-amg-green/20 border-t border-amg-gold/5">
-            <div class="max-w-5xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="scroll-reveal">
-                        <p class="text-amg-gold font-sora tracking-[0.2em] text-xs uppercase mb-3">Onde Encontrar</p>
-                        <h2 class="text-4xl font-sora font-light text-white mb-6">Fale Conosco via <span class="text-gold-gradient">Atendimento Privado</span></h2>
-                        <p class="text-gray-400 font-light leading-relaxed mb-8">
-                            Nossos peptídeos são distribuídos de maneira restrita para garantir a máxima qualidade e preservação da cadeia fria. Entre em contato diretamente com o nosso suporte técnico para aquisições, dúvidas ou informações detalhadas sobre os lotes.
-                        </p>
-                        <div class="flex items-center gap-4 text-sm text-gray-400 font-light">
-                            <i data-lucide="shield-check" class="text-amg-gold w-5 h-5"></i>
-                            <span>Canal de atendimento criptografado e seguro.</span>
-                        </div>
-                    </div>
-
-                    <div class="scroll-reveal">
-                        <div class="glass-card p-8 rounded-2xl border border-amg-gold/20 text-center relative overflow-hidden">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-amg-lime rounded-full blur-[80px] opacity-10"></div>
-                            
-                            <div class="w-16 h-16 bg-amg-green rounded-full flex items-center justify-center mx-auto mb-6 border border-amg-lime/30 text-amg-lime shadow-[0_0_20px_rgba(126,189,34,0.2)]">
-                                <i data-lucide="phone" class="w-8 h-8"></i>
-                            </div>
-                            
-                            <h3 class="font-sora text-xl text-white mb-2">Consultoria AMG</h3>
-                            <p class="text-gray-400 text-sm font-light mb-6">Clique abaixo para iniciar a sua mensagem de contato no WhatsApp.</p>
-                            
-                            <a href="https://wa.me/5545999674663?text=Ol%C3%A1%21%20Gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20GHK-Cu%20da%20AMG%20Pept%C3%ADdeos%20e%20falar%20com%20um%20especialista." target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-amg-gold text-black font-sora font-medium text-sm rounded-xl hover:bg-amg-goldhover transition-all shadow-[0_4px_20px_rgba(196,164,92,0.3)]">
-                                <i data-lucide="message-circle" class="w-5 h-5"></i>
-                                <span>Iniciar Atendimento</span>
-                            </a>
-
-                            <a href="https://instagram.com/andreleopoldo.oficial" target="_blank" rel="noopener noreferrer" class="w-full mt-4 inline-flex items-center justify-center gap-3 px-6 py-4 glass text-white font-sora font-medium text-sm rounded-xl border border-amg-gold/30 hover:border-amg-gold hover:bg-amg-gold/10 transition-all">
-                                <i data-lucide="instagram" class="w-5 h-5"></i>
-                                <span>@andreleopoldo.oficial</span>
-                            </a>
-
-                            
-                            <span class="block text-xs font-mono text-gray-500 mt-4 tracking-widest">+55 (45) 99967-4663</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Lab Reports (Moved to absolute bottom) -->
-        <section id="lab" class="py-32 px-6 border-t border-amg-gold/5 bg-amg-black">
-            <div class="max-w-4xl mx-auto text-center scroll-reveal">
-                <i data-lucide="microscope" class="w-12 h-12 text-amg-gold mx-auto mb-6"></i>
-                <h2 class="text-3xl font-sora font-light mb-4">Transparência <span class="text-gold-gradient">Laboratorial</span></h2>
-                <p class="text-gray-400 font-light mb-12">Pureza atestada acima de 99%. Cada lote acompanha laudo técnico rigoroso garantindo a estrutura peptídica exata.</p>
-                
-                <div class="space-y-6 max-w-2xl mx-auto">
-
-                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-red-900/50 relative overflow-hidden ">
-                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-900/10 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
-                            <div class="w-12 h-12 rounded-lg bg-amg-dark flex items-center justify-center border border-gray-800 text-gray-500 shrink-0">
-                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                    <div class="glass-card rounded-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-4 border-l-4 border-l-red-300">
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="w-10 h-10 rounded-sm bg-white flex items-center justify-center border border-red-100 text-red-400 shrink-0">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <div class="flex items-center gap-3 mb-1">
-                                    <h4 class="font-sora font-medium text-gray-400">GHK-CU 50mg <span class="text-xs text-gray-500 ml-2 font-normal">(2.750 unidades)</span></h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-red-900/20 text-red-400 border border-red-900/30">Esgotado</span>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h4 class="font-sora text-sm font-medium text-amg-text">GHK-CU 50mg <span class="text-xs text-amg-muted font-normal ml-1">(2.000 un.)</span></h4>
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-mono tracking-widest uppercase bg-red-50 text-red-600 border border-red-200">Esgotado</span>
                                 </div>
-                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
-                                    <span class="">Lote: 007.001</span>
-                                    <span>Fab: 12/25</span>
-                                    <span>Val: 06/2027</span>
+                                <div class="flex flex-wrap items-center gap-x-3 text-[10px] text-amg-muted uppercase tracking-widest mt-1 font-mono">
+                                    <span>Lote: 010.004</span> • <span>Fab: 02/26</span> • <span>Val: 08/2027</span>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
 
-                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-red-900/50 relative overflow-hidden ">
-                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-900/10 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
-                            <div class="w-12 h-12 rounded-lg bg-amg-dark flex items-center justify-center border border-gray-800 text-gray-500 shrink-0">
-                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                    <div class="glass-card rounded-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-4 border-l-4 border-l-red-300">
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="w-10 h-10 rounded-sm bg-white flex items-center justify-center border border-red-100 text-red-400 shrink-0">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <div class="flex items-center gap-3 mb-1">
-                                    <h4 class="font-sora font-medium text-gray-400">GHK-CU 100mg <span class="text-xs text-gray-500 ml-2 font-normal">(3.500 unidades)</span></h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-red-900/20 text-red-400 border border-red-900/30">Esgotado</span>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h4 class="font-sora text-sm font-medium text-amg-text">GHK-CU 100mg <span class="text-xs text-amg-muted font-normal ml-1">(3.000 un.)</span></h4>
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-mono tracking-widest uppercase bg-red-50 text-red-600 border border-red-200">Esgotado</span>
                                 </div>
-                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
-                                    <span class="">Lote: 007.002</span>
-                                    <span>Fab: 12/25</span>
-                                    <span>Val: 06/2027</span>
+                                <div class="flex flex-wrap items-center gap-x-3 text-[10px] text-amg-muted uppercase tracking-widest mt-1 font-mono">
+                                    <span>Lote: 011.005</span> • <span>Fab: 03/26</span> • <span>Val: 09/2027</span>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
 
-                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-red-900/50 relative overflow-hidden ">
-                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-900/10 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
-                            <div class="w-12 h-12 rounded-lg bg-amg-dark flex items-center justify-center border border-gray-800 text-gray-500 shrink-0">
-                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                    <div class="glass-card rounded-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-4 border-l-4 border-l-red-300">
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="w-10 h-10 rounded-sm bg-white flex items-center justify-center border border-red-100 text-red-400 shrink-0">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <div class="flex items-center gap-3 mb-1">
-                                    <h4 class="font-sora font-medium text-gray-400">GHK-CU 100mg <span class="text-xs text-gray-500 ml-2 font-normal">(2.500 unidades)</span></h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-red-900/20 text-red-400 border border-red-900/30">Esgotado</span>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h4 class="font-sora text-sm font-medium text-amg-text">GHK-CU 50mg <span class="text-xs text-amg-muted font-normal ml-1">(4.000 un.)</span></h4>
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-mono tracking-widest uppercase bg-red-50 text-red-600 border border-red-200">Esgotado</span>
                                 </div>
-                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
-                                    <span class="">Lote: 008.002</span>
-                                    <span>Fab: 01/26</span>
-                                    <span>Val: 08/2027</span>
+                                <div class="flex flex-wrap items-center gap-x-3 text-[10px] text-amg-muted uppercase tracking-widest mt-1 font-mono">
+                                    <span>Lote: 012.004</span> • <span>Fab: 04/26</span> • <span>Val: 10/2027</span>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
 
-                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-red-900/50 relative overflow-hidden ">
-                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-900/10 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
-                            <div class="w-12 h-12 rounded-lg bg-amg-dark flex items-center justify-center border border-gray-800 text-gray-500 shrink-0">
-                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                    <!-- Lotes Ativos / Em Destaque -->
+                    <div class="glass-card rounded-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-4 border-l-4 border-l-amg-gold shadow-sm bg-white/80">
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="w-10 h-10 rounded-sm bg-amg-gold/5 flex items-center justify-center border border-amg-gold/20 text-amg-gold shrink-0">
+                                <i data-lucide="flask-conical" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <div class="flex items-center gap-3 mb-1">
-                                    <h4 class="font-sora font-medium text-gray-400">GHK-CU 50mg <span class="text-xs text-gray-500 ml-2 font-normal">(2.000 unidades)</span></h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-red-900/20 text-red-400 border border-red-900/30">Esgotado</span>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h4 class="font-sora text-sm font-medium text-amg-text">GHK-CU 100mg <span class="text-xs text-amg-muted font-normal ml-1">(5.000 un.)</span></h4>
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-mono tracking-widest uppercase bg-amg-gold/10 text-amg-gold border border-amg-gold/20">Exclusivo Parceiro</span>
                                 </div>
-                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
-                                    <span class="">Lote: 009.003</span>
-                                    <span>Fab: 02/26</span>
-                                    <span>Val: 08/2027</span>
+                                <div class="flex flex-wrap items-center gap-x-3 text-[10px] text-amg-muted uppercase tracking-widest mt-1 font-mono">
+                                    <span class="text-amg-gold font-medium">Lote: 014.006</span> • <span>Fab: 06/26</span> • <span>Val: 12/2027</span>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
 
-                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-red-900/50 relative overflow-hidden ">
-                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-900/10 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
-                            <div class="w-12 h-12 rounded-lg bg-amg-dark flex items-center justify-center border border-gray-800 text-gray-500 shrink-0">
-                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                    <div class="glass-card rounded-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-4 border-l-4 border-l-amg-gold shadow-sm bg-white/80">
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="w-10 h-10 rounded-sm bg-amg-gold/5 flex items-center justify-center border border-amg-gold/20 text-amg-gold shrink-0">
+                                <i data-lucide="flask-conical" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <div class="flex items-center gap-3 mb-1">
-                                    <h4 class="font-sora font-medium text-gray-400">GHK-CU 50mg <span class="text-xs text-gray-500 ml-2 font-normal">(2.000 unidades)</span></h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-red-900/20 text-red-400 border border-red-900/30">Esgotado</span>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h4 class="font-sora text-sm font-medium text-amg-text">GHK-CU 100mg <span class="text-xs text-amg-muted font-normal ml-1">(10.000 un.)</span></h4>
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-mono tracking-widest uppercase bg-amg-gold/10 text-amg-gold border border-amg-gold/20">Em Fabricação</span>
                                 </div>
-                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
-                                    <span class="">Lote: 010.004</span>
-                                    <span>Fab: 02/26</span>
-                                    <span>Val: 08/2027</span>
+                                <div class="flex flex-wrap items-center gap-x-3 text-[10px] text-amg-muted uppercase tracking-widest mt-1 font-mono">
+                                    <span class="text-amg-gold font-medium">Lote: 015.006</span> • <span>Fab: 06/26</span> • <span>Val: 12/2027</span>
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>
-
-                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-red-900/50 relative overflow-hidden ">
-                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-900/10 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
-                            <div class="w-12 h-12 rounded-lg bg-amg-dark flex items-center justify-center border border-gray-800 text-gray-500 shrink-0">
-                                <i data-lucide="file-text" class="w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-3 mb-1">
-                                    <h4 class="font-sora font-medium text-gray-400">GHK-CU 100mg <span class="text-xs text-gray-500 ml-2 font-normal">(3.000 unidades)</span></h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-red-900/20 text-red-400 border border-red-900/30">Esgotado</span>
-                                </div>
-                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
-                                    <span class="">Lote: 011.005</span>
-                                    <span>Fab: 03/26</span>
-                                    <span>Val: 09/2027</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-red-900/50 relative overflow-hidden ">
-                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-900/10 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
-                            <div class="w-12 h-12 rounded-lg bg-amg-dark flex items-center justify-center border border-gray-800 text-gray-500 shrink-0">
-                                <i data-lucide="file-text" class="w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-3 mb-1">
-                                    <h4 class="font-sora font-medium text-gray-400">GHK-CU 50mg <span class="text-xs text-gray-500 ml-2 font-normal">(4.000 unidades)</span></h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-red-900/20 text-red-400 border border-red-900/30">Esgotado</span>
-                                </div>
-                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
-                                    <span class="">Lote: 012.004</span>
-                                    <span>Fab: 04/26</span>
-                                    <span>Val: 10/2027</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-amber-500/50 relative overflow-hidden shadow-[0_0_30px_rgba(245,158,11,0.05)]">
-                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-amber-500/10 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
-                            <div class="w-12 h-12 rounded-lg bg-amber-900/20 flex items-center justify-center border border-amber-500/30 text-amber-500 shrink-0">
-                                <i data-lucide="flask-conical" class="w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-3 mb-1">
-                                    <h4 class="font-sora font-medium text-white">GHK-CU 100mg <span class="text-xs text-gray-500 ml-2 font-normal">(5.000 unidades)</span></h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-amber-500/10 text-amber-500 border border-amber-500/20">Exclusivo Parceiro</span>
-                                </div>
-                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
-                                    <span class="text-amber-500">Lote: 014.006</span>
-                                    <span>Fab: 06/26</span>
-                                    <span>Val: 12/2027</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-left gap-6 border-l-4 border-l-amber-500/50 relative overflow-hidden shadow-[0_0_30px_rgba(245,158,11,0.05)]">
-                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-amber-500/10 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="flex items-start md:items-center gap-6 w-full md:w-auto">
-                            <div class="w-12 h-12 rounded-lg bg-amber-900/20 flex items-center justify-center border border-amber-500/30 text-amber-500 shrink-0">
-                                <i data-lucide="flask-conical" class="w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-3 mb-1">
-                                    <h4 class="font-sora font-medium text-white">GHK-CU 100mg <span class="text-xs text-gray-500 ml-2 font-normal">(10.000 unidades)</span></h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase bg-amber-500/10 text-amber-500 border border-amber-500/20">Em Fabricação</span>
-                                </div>
-                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 uppercase tracking-widest mt-2 font-mono">
-                                    <span class="text-amber-500">Lote: 015.006</span>
-                                    <span>Fab: 06/26</span>
-                                    <span>Val: 12/2027</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="./images/laudo-tecnico.pdf" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto text-center px-6 py-3 bg-transparent border border-amber-500/50 text-amber-500 rounded-full text-xs font-sora hover:bg-amber-500 hover:text-black transition-colors uppercase tracking-widest shrink-0 ">Laudo Preliminar</a>
+                        <a href="./images/laudo-tecnico.pdf" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto text-center px-4 py-2 border border-amg-gold/40 text-amg-gold rounded-sm text-[10px] font-sora hover:bg-amg-gold hover:text-white transition-colors uppercase tracking-widest shrink-0">
+                            Laudo Preliminar
+                        </a>
                     </div>
 
                 </div>
             </div>
         </section>
 
-        <footer class="border-t border-amg-gold/10 py-10 px-6 text-center text-sm text-gray-600 font-light">
+        <!-- Contato -->
+        <section id="contact" class="py-24 px-6 border-t border-amg-gold/10">
+            <div class="max-w-5xl mx-auto scroll-reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-sora font-light text-amg-text mb-4">Canais de <span class="text-gold-gradient">Atendimento</span></h2>
+                    <p class="text-amg-muted text-sm font-light max-w-xl mx-auto">
+                        Distribuição restrita. Contate nosso suporte técnico ou comercial para aquisições e informações detalhadas sobre protocolos.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Vendas (Prioridade) -->
+                    <div class="glass-card p-10 rounded-sm">
+                        <div class="flex items-center gap-3 mb-6 border-b border-amg-gold/20 pb-4">
+                            <i data-lucide="shopping-bag" class="w-5 h-5 text-amg-gold"></i>
+                            <h3 class="font-sora text-lg text-amg-text uppercase tracking-widest">Vendas</h3>
+                        </div>
+                        <ul class="space-y-5">
+                            <li>
+                                <a href="https://wa.me/595994948913" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center group">
+                                    <span class="font-mono text-sm text-amg-muted group-hover:text-amg-gold transition-colors">+595 994 948 913</span>
+                                    <span class="text-xs uppercase tracking-widest text-amg-text font-medium group-hover:text-amg-gold transition-colors">Evelyn</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/595993465704" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center group">
+                                    <span class="font-mono text-sm text-amg-muted group-hover:text-amg-gold transition-colors">+595 993 465 704</span>
+                                    <span class="text-xs uppercase tracking-widest text-amg-text font-medium group-hover:text-amg-gold transition-colors">Verônica</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/595992126856" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center group">
+                                    <span class="font-mono text-sm text-amg-muted group-hover:text-amg-gold transition-colors">+595 992 126 856</span>
+                                    <span class="text-xs uppercase tracking-widest text-amg-text font-medium group-hover:text-amg-gold transition-colors">Amira</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/595992218151" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center group">
+                                    <span class="font-mono text-sm text-amg-muted group-hover:text-amg-gold transition-colors">+595 992 218 151</span>
+                                    <span class="text-xs uppercase tracking-widest text-amg-text font-medium group-hover:text-amg-gold transition-colors">Diogo</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Diretoria -->
+                    <div class="glass-card p-10 rounded-sm">
+                        <div class="flex items-center gap-3 mb-6 border-b border-amg-gold/20 pb-4">
+                            <i data-lucide="shield" class="w-5 h-5 text-amg-gold"></i>
+                            <h3 class="font-sora text-lg text-amg-text uppercase tracking-widest">Diretoria</h3>
+                        </div>
+                        <ul class="space-y-5">
+                            <li>
+                                <a href="https://wa.me/5545999674663" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center group">
+                                    <span class="font-mono text-sm text-amg-muted group-hover:text-amg-gold transition-colors">+55 (45) 99967-4663</span>
+                                    <span class="text-xs uppercase tracking-widest text-amg-text font-medium group-hover:text-amg-gold transition-colors">Diretoria</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="border-t border-amg-gold/10 py-10 text-center text-[10px] text-amg-muted font-light tracking-widest uppercase">
             <p>&copy; 2026 AMG Peptídeos. Ciência em Alta Performance.</p>
-
-        <div class="flex justify-center mt-10 mb-6">
-            <img src="./images/bonequinho.png" alt="AMG Operador" class="w-16 h-16 opacity-40 hover:opacity-80 transition-opacity grayscale hover:grayscale-0 drop-shadow-[0_0_10px_rgba(196,164,92,0.2)]">
-        </div>
         </footer>
 
     </main>
 
     <script>
         lucide.createIcons();
-
-        const cursorGlow = document.getElementById('cursor-glow');
-        window.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
-
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            smooth: true,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
+        const lenis = new Lenis({ duration: 1.2, smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
 
         gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.from(".hero-anim", {
-            y: 30,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power3.out"
-        });
-
-        gsap.to(".floating-element", {
-            y: -15,
-            duration: 3,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut"
-        });
-
-        gsap.utils.toArray('.scroll-reveal').forEach(element => {
-            gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 40,
-                opacity: 0,
-                duration: 1,
-                ease: "power3.out"
-            });
+        gsap.from(".hero-anim", { y: 20, opacity: 0, duration: 1, stagger: 0.1, ease: "power2.out" });
+        gsap.utils.toArray('.scroll-reveal').forEach(el => {
+            gsap.from(el, { scrollTrigger: { trigger: el, start: "top 85%" }, y: 30, opacity: 0, duration: 1, ease: "power2.out" });
         });
     </script>
 </body>
